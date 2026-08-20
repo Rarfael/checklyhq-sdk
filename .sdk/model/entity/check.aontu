@@ -1,0 +1,246 @@
+# Entity: check
+
+main: kit: entity: check: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "activated"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "checkType"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "created_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "frequency"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "locations"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "muted"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "request"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "check"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/checks"
+          parts: [
+            "checks"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/checks"
+          parts: [
+            "checks"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/checks/{id}"
+          parts: [
+            "checks"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/checks/{id}"
+          parts: [
+            "checks"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PUT"
+          orig: "/checks/{id}"
+          parts: [
+            "checks"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

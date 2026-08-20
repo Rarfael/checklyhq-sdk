@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "check": {
+      "CHECK00": {
+        "activated": true,
+        "checkType": "s65",
+        "created_at": "s66",
+        "frequency": "s67",
+        "id": "CHECK00",
+        "locations": [],
+        "muted": true,
+        "name": "s6b",
+        "request": {},
+        "updated_at": "s6d"
+      },
+      "CHECK01": {
+        "activated": true,
+        "checkType": "sc9",
+        "created_at": "sca",
+        "frequency": "scb",
+        "id": "CHECK01",
+        "locations": [],
+        "muted": true,
+        "name": "scf",
+        "request": {},
+        "updated_at": "sd1"
+      },
+      "CHECK02": {
+        "activated": true,
+        "checkType": "s12d",
+        "created_at": "s12e",
+        "frequency": "s12f",
+        "id": "CHECK02",
+        "locations": [],
+        "muted": true,
+        "name": "s133",
+        "request": {},
+        "updated_at": "s135"
+      }
+    }
+  },
+  "new": {
+    "check": {
+      "check_ref01": {
+        "activated": true,
+        "checkType": "s191",
+        "created_at": "s192",
+        "frequency": "s193",
+        "locations": [],
+        "muted": true,
+        "name": "s197",
+        "request": {},
+        "updated_at": "s199"
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Checkly Checks API",
+    "version": "1.0.0",
+    "description": "Create, read, update, and delete Checkly checks."
+  },
+  "servers": [
+    { "url": "https://api.checklyhq.com/v1" }
+  ],
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "paths": {
+    "/checks": {
+      "get": {
+        "operationId": "listChecks",
+        "summary": "List checks",
+        "parameters": [
+          { "name": "limit", "in": "query", "required": false, "schema": { "type": "integer" } },
+          { "name": "page", "in": "query", "required": false, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of checks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Check" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCheck",
+        "summary": "Create a check",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CheckInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created check",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Check" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/checks/{id}": {
+      "get": {
+        "operationId": "getCheck",
+        "summary": "Retrieve a check",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested check",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Check" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateCheck",
+        "summary": "Update a check",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CheckInput" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated check",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Check" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteCheck",
+        "summary": "Delete a check",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Deleted" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "CheckInput": {
+        "type": "object",
+        "required": ["name", "checkType"],
+        "properties": {
+          "name": { "type": "string" },
+          "checkType": { "type": "string" },
+          "activated": { "type": "boolean" },
+          "muted": { "type": "boolean" },
+          "frequency": { "type": "integer" },
+          "locations": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "request": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" },
+              "method": { "type": "string" }
+            }
+          }
+        }
+      },
+      "Check": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "checkType": { "type": "string" },
+          "activated": { "type": "boolean" },
+          "muted": { "type": "boolean" },
+          "frequency": { "type": "integer" },
+          "locations": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "request": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" },
+              "method": { "type": "string" }
+            }
+          },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}

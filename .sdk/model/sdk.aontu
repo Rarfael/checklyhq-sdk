@@ -1,0 +1,42 @@
+
+# Model definitions.
+@"@voxgig/apidef/model/apidef.aontu"
+@"@voxgig/sdkgen/model/sdkgen.aontu"
+
+
+# SDK Details.
+name: 'checklyhq'
+origin: 'voxgig-sdk'
+def: 'checklyhq-checks-only.json'
+
+
+# API Information
+@"api/api-info.aontu"
+
+
+# SDK Configuration.
+@"config.aontu"
+
+
+# SDK Entities
+@"entity/entity-index.aontu"
+
+
+# SDK Features.
+@"feature/feature-index.aontu"
+ 
+
+# SDK Targets.
+@"target/target-index.aontu"
+
+
+# Operation workflows.
+@"flow/flow-index.aontu"
+
+
+# Seneca provider plugin generates out-of-tree into the sibling repo.
+main: kit: target: 'seneca-provider': output: {
+  path: '../../seneca/checklyhq-provider'
+  sdkrel: '../../voxgig-sdk/checklyhq-sdk'
+}
+

@@ -1,0 +1,100 @@
+# BasicCheckFlow
+
+main: kit: flow: BasicCheckFlow:
+{
+  entity: "check",
+  kind: "basic",
+  name: "BasicCheckFlow",
+  step: [
+    {
+      input: {
+        ref: "check_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "check_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "check_ref01",
+        srcdatavar: "check_ref01_data",
+        suffix: "_up0",
+        textfield: "checkType"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-check_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "check_ref01",
+        srcdatavar: "check_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "check01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-check_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "check_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "check01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "check_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCheckFlow"
+}

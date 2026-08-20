@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Create, read, update, and delete Checkly checks."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          url: "https://api.checklyhq.com/v1"
+        }
+      ]
+      summary: "Create, read, update, and delete Checkly checks."
+      title: "Checkly Checks API"
+      version: "1.0.0"
+      website: "https://checklyhq.com"
+    }
+  }
+}
+
